@@ -1,24 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main(List<String> args) {
   runApp(MaterialApp(
     home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome'),
-      ),
+      backgroundColor: Colors.black,
       body: Center(
-        child: Container(
-          width: 360,
-          color: Colors.red[700],
-          child: const Text(
-            'Hello World!',
-            style: TextStyle(
-              fontSize: 60,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Hello World',
+              style: GoogleFonts.robotoMono(
+                fontSize: 50,
+                fontWeight: FontWeight.w700,
+                color: Colors.red[200],
+                letterSpacing: 2,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
+            Text.rich(
+              TextSpan(
+                  text: "Hello ",
+                  style: GoogleFonts.robotoMono(
+                    fontSize: 40,
+                    color: Colors.green,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "World",
+                      style: GoogleFonts.robotoMono(
+                        fontSize: 40,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '!',
+                      style: GoogleFonts.robotoMono(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  ]),
+            )
+          ],
         ),
       ),
     ),
