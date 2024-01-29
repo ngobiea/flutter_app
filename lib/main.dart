@@ -5,32 +5,69 @@ void main(List<String> args) {
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.black,
           title: const Text(
-            'Container',
+            'Rows & Columns',
             style: TextStyle(color: Colors.white),
           ),
         ),
         body: Center(
           child: Container(
-            height: 360,
-            width: 360,
-            alignment: Alignment.bottomRight,
-            decoration: const BoxDecoration(
-              color: Colors.pink,
-              // shape: BoxShape.circle
-              borderRadius: BorderRadius.all(Radius.circular(20))
-            ),
-            padding: const EdgeInsets.all(
-              20.0,
-            ),
-            child: const Text(
-              'Hello',
-              // textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 60,
-                color: Colors.white,
-              ),
+            color: Colors.black,
+            height: 300,
+            width: 300,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.end,
+              // verticalDirection: VerticalDirection.up,
+              children: [
+                Container(
+                  width: 100,
+                  height: 40,
+                  color: Colors.green,
+                ),
+                Container(
+                  width: 100,
+                  height: 40,
+                  color: Colors.white,
+                ),
+                Container(
+                  width: 100,
+                  height: 40,
+                  color: Colors.blue,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  // textDirection: TextDirection.rtl,
+                  children: [
+                    Text(
+                      'Le',
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 15,
+                      ),
+                    ),
+                    Text(
+                      '.................',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      'Le3000',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
