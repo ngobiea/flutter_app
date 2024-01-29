@@ -1,52 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main(List<String> args) {
-  runApp(MaterialApp(
-    home: Scaffold(
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Hello World',
-              style: GoogleFonts.robotoMono(
-                fontSize: 50,
-                fontWeight: FontWeight.w700,
-                color: Colors.red[200],
-                letterSpacing: 2,
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blue,
+          title: const Text(
+            'Container',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        body: Center(
+          child: Container(
+            height: 360,
+            width: 360,
+            alignment: Alignment.bottomRight,
+            decoration: const BoxDecoration(
+              color: Colors.pink,
+              // shape: BoxShape.circle
+              borderRadius: BorderRadius.all(Radius.circular(20))
+            ),
+            padding: const EdgeInsets.all(
+              20.0,
+            ),
+            child: const Text(
+              'Hello',
+              // textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 60,
+                color: Colors.white,
               ),
             ),
-            Text.rich(
-              TextSpan(
-                  text: "Hello ",
-                  style: GoogleFonts.robotoMono(
-                    fontSize: 40,
-                    color: Colors.green,
-                    fontWeight: FontWeight.w300,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: "World",
-                      style: GoogleFonts.robotoMono(
-                        fontSize: 40,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                    TextSpan(
-                      text: '!',
-                      style: GoogleFonts.robotoMono(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )
-                  ]),
-            )
-          ],
+          ),
         ),
       ),
     ),
-  ));
+  );
 }
