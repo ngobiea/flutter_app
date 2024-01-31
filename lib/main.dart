@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,221 +36,168 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        // padding: EdgeInsets.only(top: 60),
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(color: Colors.grey[850]),
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 70, 10, 0),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                  ),
-                  Icon(
-                    Icons.settings,
-                    color: Colors.white,
-                  ),
-                ],
+      backgroundColor: Colors.grey[900],
+      body: Stack(
+        children: [
+          const Positioned(
+            top: 50,
+            left: 20,
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+          const Positioned(
+            top: 50,
+            right: 20,
+            child: Icon(
+              Icons.settings,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 50,
+                right: 50,
+                bottom: 20,
+                top: 20,
               ),
-            ),
-            const CircleAvatar(
-              radius: 70,
-              backgroundImage: AssetImage('assets/images/my-profile.jpg'),
-            ),
-            const Text.rich(
-              TextSpan(
-                text: 'Augustine Ngobie\n',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
-                ),
-                children: [
-                  TextSpan(
-                    text: '\t\t\t\t\t\t\t\tngobiea@gmail.com',
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 500,
-              padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  const CircleAvatar(
+                    radius: 70,
+                    backgroundImage: AssetImage('assets/images/my-profile.jpg'),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    'Augustine Ngobie',
+                    style: GoogleFonts.lato(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'ngobiea@gmail.com',
+                    style: GoogleFonts.lato(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(height: 20),
                   Container(
-                    width: double.infinity,
-                    height: 55,
-                    alignment: Alignment.center,
+                    width: 500,
+                    height: 50,
                     decoration: BoxDecoration(
                         color: Colors.yellow[400],
-                        borderRadius: BorderRadius.circular(25)),
-                    child: const Text(
-                      'Upgrade to Premium',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 25,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30))),
+                    child: Center(
+                      child: Text(
+                        'Upgrade to Premium',
+                        style: GoogleFonts.lato(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(25)),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.shopping_bag_outlined,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            ),
-                            Text(
-                              'Your order history',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
+                  const SizedBox(height: 20),
+                  const ProfileMenuItem(
+                    text: 'Your order history',
+                    icon: Icons.shopping_bag_outlined,
+                    arrowShown: true,
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(25)),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.help_outline,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            ),
-                            Text(
-                              'Help and Support',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
+                  const SizedBox(height: 20),
+                  const ProfileMenuItem(
+                    text: 'Help and Support',
+                    icon: Icons.help_outline,
+                    arrowShown: true,
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(25)),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.redeem_outlined,
-                                color: Colors.white,
-                                size: 40,
-                              ),
-                            ),
-                            Text(
-                              'Load gift voucher',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Icon(
-                            Icons.arrow_forward,
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
+                  const SizedBox(height: 20),
+                  const ProfileMenuItem(
+                    text: 'Load gift voucher',
+                    icon: Icons.redeem_outlined,
+                    arrowShown: true,
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 55,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(25)),
-                    child: const Row(
-                      // mainAxisAlignment: MainAxi,
-                      children: [
-                         Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            Icons.logout,
-                            color: Colors.white,
-                            size: 40,
-                          ),
-                        ),
-                        Text(
-                          'Logout',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                              color: Colors.white),
-                        ),
-                   
-                      ],
-                    ),
+                  const SizedBox(height: 20),
+                  const ProfileMenuItem(
+                    text: 'Logout',
+                    icon: Icons.logout,
+                    arrowShown: false,
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileMenuItem extends StatelessWidget {
+  const ProfileMenuItem({
+    super.key,
+    required this.text,
+    required this.icon,
+    required this.arrowShown,
+  });
+  final IconData icon;
+  final String text;
+  final bool arrowShown;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 500,
+      height: 50,
+      decoration: BoxDecoration(
+          color: Colors.grey[500], borderRadius: BorderRadius.circular(30)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 12),
+                child: Icon(
+                  icon,
+                  color: Colors.white,
+                  size: 40,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          arrowShown
+              ? const Padding(
+                  padding: EdgeInsets.only(right: 12),
+                  child: Icon(
+                    Icons.arrow_forward,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                )
+              : Container()
+        ],
       ),
     );
   }
