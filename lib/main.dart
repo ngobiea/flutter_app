@@ -76,6 +76,7 @@ class _ButtonsState extends State<Buttons> {
           onTap: () {
             setState(() {
               maleCounter++;
+              print(widget.text);
             });
           },
           text: 'Male +'),
@@ -84,6 +85,7 @@ class _ButtonsState extends State<Buttons> {
           onTap: () {
             setState(() {
               femaleCounter++;
+              print(widget.text);
             });
           },
           text: 'Female +'),
