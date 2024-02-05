@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Defaults {
-  static const Color drawerItemColor = Colors.blueGrey;
-  static final Color drawerItemSelectedColor = Colors.blue[700]!;
-  static final Color drawerSelectedTileColor = Colors.blue[100]!;
+  static const Color bottomNavItemColor = Colors.blueGrey;
+  static final Color bottomNavItemSelectedColor = Colors.blue[700]!;
+  static final Color bottomNavSelectedTileColor = Colors.blue[100]!;
 
-  static final drawerItemText = [
+  static final bottomNavItemText = [
     'Inbox',
     'Starred',
     'Sent',
@@ -14,7 +14,7 @@ class Defaults {
     'Spam',
   ];
 
-  static final drawerItemIcon = [
+  static final bottomNavItemIcon = [
     Icons.inbox,
     Icons.star,
     Icons.send,
