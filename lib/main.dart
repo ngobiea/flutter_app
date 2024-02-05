@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/defaults/defaults.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -144,54 +143,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class AppDrawerDivider extends StatelessWidget {
-  const AppDrawerDivider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Divider(
-      height: 1,
-      thickness: 2,
-      color: Defaults.bottomNavItemColor,
-      indent: 3,
-      endIndent: 3,
-    );
-  }
-}
-
-// class AppDrawerTile extends StatelessWidget {
-//   const AppDrawerTile({super.key, required this.index, required this.onTap});
-//   final int index;
-//   final VoidCallback onTap;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(horizontal: 8),
-//       child: ListTile(
-//         selected: index == indexClicked,
-//         selectedTileColor: Defaults.bottomNavSelectedTileColor,
-//         onTap: onTap,
-//         leading: Icon(
-//           Defaults.drawerItemIcon[index],
-//           size: 15,
-//           color: indexClicked == index
-//               ? Defaults.bottomNavItemSelectedColor
-//               : Defaults.bottomNavItemColor,
-//         ),
-//         title: Text(
-//           Defaults.drawerItemText[index],
-//           style: GoogleFonts.sanchez(
-//             fontSize: 20,
-//             fontWeight: FontWeight.w500,
-//             color: indexClicked == index
-//                 ? Defaults.bottomNavItemSelectedColor
-//                 : Defaults.bottomNavItemColor,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
