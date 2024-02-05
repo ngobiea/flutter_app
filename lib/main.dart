@@ -11,20 +11,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
+      home: MainPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainPageState extends State<MainPage> {
   var indexClicked = 0;
+  String text = 'None Clicked';
+  GlobalKey<ScaffoldState> drawerKey = GlobalKey();
 
   final pages = [
     const Center(
@@ -69,77 +72,150 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        title: const Text(
-          "Bottom Navigation",
-          style: TextStyle(
-            color: Colors.white,
+    return DefaultTabController(
+      length: 3,
+      initialIndex: 0,
+      child: Scaffold(
+        key: drawerKey,
+        appBar: AppBar(
+          backgroundColor: Colors.blueGrey[400],
+          leading: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Image(image: AssetImage('assets/images/logo.png')),
           ),
-        ),
-        backgroundColor: Colors.blue,
-      ),
-      body: pages[indexClicked],
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue[100],
-        // type: BottomNavigationBarType.fixed,
-        type: BottomNavigationBarType.shifting,
-
-        elevation: 60,
-        selectedItemColor: Defaults.bottomNavItemSelectedColor,
-        unselectedItemColor: Defaults.bottomNavItemColor,
-        currentIndex: indexClicked,
-        onTap: (value) {
-          setState(() {
-            indexClicked = value;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: Colors.blue[100],
-            icon: Icon(
-              Defaults.bottomNavItemIcon[0],
+          title: const Text(
+            "Appbar and TabBar",
+            style: TextStyle(
+              color: Colors.white,
             ),
-            label: Defaults.bottomNavItemText[0],
           ),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.yellow[100],
-              icon: Icon(
-                Defaults.bottomNavItemIcon[1],
+          actions: [
+            IconButton(
+              splashRadius: 30,
+              onPressed: () {
+                setState(() {
+                  text = 'Casting Click';
+                });
+              },
+              icon: const Icon(
+                Icons.cast,
               ),
-              label: Defaults.bottomNavItemText[1]),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.green[100],
-              icon: Icon(
-                Defaults.bottomNavItemIcon[2],
+            ),
+            IconButton(
+              splashRadius: 30,
+              onPressed: () {
+                setState(() {
+                  text = 'Notification Click';
+                });
+              },
+              icon: const Icon(
+                Icons.notifications,
               ),
-              label: Defaults.bottomNavItemText[2]),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.red[100],
-              icon: Icon(
-                Defaults.bottomNavItemIcon[3],
+            ),
+            IconButton(
+              splashRadius: 30,
+              onPressed: () {
+                setState(() {
+                  text = 'Search Click';
+                });
+              },
+              icon: const Icon(
+                Icons.search,
               ),
-              label: Defaults.bottomNavItemText[3]),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.orange[100],
+            ),
+            IconButton(
+              splashRadius: 30,
+              onPressed: () {
+                setState(() {
+                  drawerKey.currentState?.openEndDrawer();
+                });
+              },
+              icon: const CircleAvatar(
+                backgroundImage: AssetImage('assets/images/my-profile.jpg'),
+              ),
+            ),
+          ],
+          bottom: const TabBar(tabs: [
+            Tab(
+              icon: Icon(Icons.car_repair),
+            ),
+            Tab(
+              icon: Icon(Icons.home_repair_service),
+            ),
+            Tab(
+              icon: Icon(Icons.room_service),
+            ),
+          ]),
+        ),
+        endDrawer: const Drawer(),
+        body: TabBarView(
+          children: [
+            Center(
+              child: Text('Car Repair - $text'),
+            ),
+            Center(
+              child: Text('Home Repair - $text'),
+            ),
+            Center(
+              child: Text('Room Service - $text'),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.blue[100],
+          // type: BottomNavigationBarType.fixed,
+          type: BottomNavigationBarType.shifting,
 
+          elevation: 60,
+          selectedItemColor: Defaults.bottomNavItemSelectedColor,
+          unselectedItemColor: Defaults.bottomNavItemColor,
+          currentIndex: indexClicked,
+          onTap: (value) {
+            setState(() {
+              indexClicked = value;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              backgroundColor: Colors.blue[100],
               icon: Icon(
-                Defaults.bottomNavItemIcon[4],
+                Defaults.bottomNavItemIcon[0],
               ),
-              label: Defaults.bottomNavItemText[4]),
-          BottomNavigationBarItem(
-            backgroundColor: Colors.pink[100],
-
-              icon: Icon(
-                Defaults.bottomNavItemIcon[5],
-              ),
-              label: Defaults.bottomNavItemText[5]),
-        ],
+              label: Defaults.bottomNavItemText[0],
+            ),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.yellow[100],
+                icon: Icon(
+                  Defaults.bottomNavItemIcon[1],
+                ),
+                label: Defaults.bottomNavItemText[1]),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.green[100],
+                icon: Icon(
+                  Defaults.bottomNavItemIcon[2],
+                ),
+                label: Defaults.bottomNavItemText[2]),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.red[100],
+                icon: Icon(
+                  Defaults.bottomNavItemIcon[3],
+                ),
+                label: Defaults.bottomNavItemText[3]),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.orange[100],
+                icon: Icon(
+                  Defaults.bottomNavItemIcon[4],
+                ),
+                label: Defaults.bottomNavItemText[4]),
+            BottomNavigationBarItem(
+                backgroundColor: Colors.pink[100],
+                icon: Icon(
+                  Defaults.bottomNavItemIcon[5],
+                ),
+                label: Defaults.bottomNavItemText[5]),
+          ],
+        ),
       ),
     );
   }
 }
-
