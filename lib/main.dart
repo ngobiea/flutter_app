@@ -148,18 +148,101 @@ class _MainPageState extends State<MainPage> {
           ]),
         ),
         endDrawer: const Drawer(),
-        body: TabBarView(
-          children: [
-            Center(
-              child: Text('Car Repair - $text'),
-            ),
-            Center(
-              child: Text('Home Repair - $text'),
-            ),
-            Center(
-              child: Text('Room Service - $text'),
-            ),
-          ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                text,
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  foregroundColor: Colors.white,
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.save,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'Save',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                onPressed: () {
+                  setState(() {
+                    text = 'TextButton Clicked';
+                  });
+                },
+                style: TextButton.styleFrom(),
+                child: const Text(
+                  'Ok Button',
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        text = 'TextButton in ButtonBar Clicked';
+                      });
+                    },
+                    child: const Text('No'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Yes',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              // Build a custom button
+              MaterialButton(
+                onPressed: () {},
+                color: Colors.amberAccent,
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.purple, width: 2),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  'Enter',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.blue[100],
@@ -214,6 +297,32 @@ class _MainPageState extends State<MainPage> {
                 ),
                 label: Defaults.bottomNavItemText[5]),
           ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            setState(() {
+              text = 'FAB Clicked';
+            });
+          },
+          // mini: true,
+          elevation: 10,
+          backgroundColor: Colors.red,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              20,
+            ),
+          ),
+          icon: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+          label: const Text(
+            'Add',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );
