@@ -24,14 +24,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  var indexClicked = 0;
-  String text = 'None Clicked';
-  String name = 'Name to be display';
-  TextEditingController nameController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
@@ -39,15 +31,14 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void dispose() {
-    nameController.dispose();
-    numberController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    Orientation orientation = MediaQuery.of(context).orientation;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[400],
@@ -62,111 +53,70 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AppTextField(
-                  controller: nameController,
-                  hint: 'Please enter your name',
-                  type: TextInputType.text,
-                ),
-                const SizedBox(height: 20),
-                AppTextField(
-                  controller: numberController,
-                  hint: 'Please enter phone number',
-                  type: TextInputType.number,
-                ),
-                const SizedBox(height: 20),
-                AppTextField(
-                  controller: emailController,
-                  hint: 'Please enter email',
-                  type: TextInputType.emailAddress,
-                ),
-                const SizedBox(height: 20),
-                AppTextField(
-                  controller: passwordController,
-                  hint: 'Password',
-                  type: TextInputType.text,
-                ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      name = nameController.text;
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
-                  ),
-                  child: const Text(
-                    'Submit',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Text(name)
-              ],
-            ),
-          ),
+      // body: width < 480 ? ListData() : GridData(),
+      // body: orientation == Orientation.portrait
+      //     ? const ListData()
+      //     : const GridData(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            print('Media: $width');
+            print('Builder: ${constraints.maxWidth}');
+            if (constraints.maxWidth > 1200) {
+              return const GridData(
+                aspectRation: 8,
+              );
+            }else if(constraints.maxWidth>800){
+              return const GridData(
+                aspectRation: 4,
+              );
+            }
+            return const ListData();
+          },
         ),
       ),
     );
   }
 }
 
-class AppTextField extends StatelessWidget {
-  const AppTextField({
+class ListData extends StatelessWidget {
+  const ListData({
     super.key,
-    required this.controller,
-    required this.hint,
-    required this.type,
-    // required this.isPassword,
   });
-
-  final TextEditingController controller;
-  final String hint;
-  final TextInputType type;
-  // final bool isPassword;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: hint,
-        labelStyle: const TextStyle(color: Colors.blue),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.greenAccent,
-          ),
-        ),enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.blue,
-          )
-         ),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              20,
-            ),
-          ),
-        ),
+    return ListView.builder(
+        itemCount: 20,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: const Icon(Icons.person),
+            trailing: const Icon(Icons.waves),
+            title: Text("Person $index"),
+          );
+        });
+  }
+}
 
-        // focusColor: Colors.green,
-      ),
-      keyboardType: type,
-      cursorColor: Colors.greenAccent,
-      obscureText: hint == 'Password',
-      style: const TextStyle(
-        color: Colors.red,
+class GridData extends StatelessWidget {
+  const GridData({super.key, required this.aspectRation});
+  final double aspectRation;
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: aspectRation,
+      children: List.generate(
+        20,
+        (index) {
+          return ListTile(
+            leading: const Icon(Icons.person),
+            trailing: const Icon(Icons.waves),
+            title: Text("Person $index"),
+          );
+        },
       ),
     );
   }
