@@ -1,50 +1,22 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
-import 'package:flutter_app/routes/routes.dart';
+import 'package:flutter_app/pages/fourth_page.dart';
 
-class ThirdPage extends StatefulWidget {
-  const ThirdPage({super.key, required this.name});
-  final String name;
+class Screen3 extends StatelessWidget {
+  // const Screen3({Key? key, required this.data,required this.changeData}) : super(key: key);
+  const Screen3({Key? key}) : super(key: key);
 
-  @override
-  State<ThirdPage> createState() => _ThirdPageState();
-}
+  // final String data;
+  // final Function(String) changeData;
 
-class _ThirdPageState extends State<ThirdPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Third Page'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context, 'Hello World');
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              child: Text(
-                'Hi ${widget.name}. Go to main page',
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(RouteManager.secondPage);
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-              child: const Text(
-                'Go to second page',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
-      ),
-    );
+    print('Building Screen3');
+    return const Screen4(
+        // data: data,
+        // changeData: changeData,
+
+        );
   }
 }
